@@ -1,9 +1,9 @@
-package io.pagelab.aegame;
+/**
+ * Created by sanchezz985 on 20/09/2015.
+ * email: sanchezz985@gmail.com
+ */
 
-import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+package io.pagelab.aegame;
 
 import org.andengine.engine.camera.Camera;
 import org.andengine.engine.options.EngineOptions;
@@ -22,10 +22,25 @@ import java.io.IOException;
 
 public class MainGameActivity extends BaseGameActivity {
 
+    // region Static
     public static final int CAMERA_WIDTH  = 480;
     public static final int CAMERA_HEIGHT = 800;
+    //endregion
 
-    @Override
+    //region Fields
+    //endregion
+
+    //region Private Methods
+    //endregion
+
+    //region Methods
+
+    /**
+     * TODO - Make comments for this method
+     *
+     * @Override
+     * @return
+     */
     public EngineOptions onCreateEngineOptions() {
 
         Camera camera = new Camera(0, 0, CAMERA_WIDTH, CAMERA_HEIGHT);
@@ -37,20 +52,40 @@ public class MainGameActivity extends BaseGameActivity {
         return engineoptions;
     }
 
-    @Override
+    /**
+     * TODO - Make comments for this method
+     *
+     * @Override
+     * @param pOnCreateResourcesCallback
+     * @throws IOException
+     */
     public void onCreateResources(OnCreateResourcesCallback pOnCreateResourcesCallback) throws IOException {
         pOnCreateResourcesCallback.onCreateResourcesFinished();
     }
 
-    @Override
+    /**
+     * TODO - Make comments for this method
+     *
+     * @Override
+     * @param pOnCreateSceneCallback
+     * @throws IOException
+     */
     public void onCreateScene(OnCreateSceneCallback pOnCreateSceneCallback) throws IOException {
         Scene scene = new Scene();
         scene.getBackground().setColor(Color.CYAN);
         pOnCreateSceneCallback.onCreateSceneFinished(scene);
     }
 
-    @Override
+    /**
+     * TODO - Make comments for this method
+     *
+     * @Override
+     * @param pScene
+     * @param pOnPopulateSceneCallback
+     * @throws IOException
+     */
     public void onPopulateScene(Scene pScene, OnPopulateSceneCallback pOnPopulateSceneCallback) throws IOException {
         pOnPopulateSceneCallback.onPopulateSceneFinished();
     }
+    //endregion
 }
