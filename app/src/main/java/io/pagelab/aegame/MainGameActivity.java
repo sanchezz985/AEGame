@@ -60,6 +60,13 @@ public class MainGameActivity extends BaseGameActivity {
      * @throws IOException
      */
     public void onCreateResources(OnCreateResourcesCallback pOnCreateResourcesCallback) throws IOException {
+
+        // call the Resource Manager methods
+        ResourceManager.getInstance().create(this, getEngine(), getEngine().getCamera(), getVertexBufferObjectManager());
+        ResourceManager.getInstance().loadFont();
+        ResourceManager.getInstance().loadGameAudio();
+        ResourceManager.getInstance().loadGameGraphics();
+
         pOnCreateResourcesCallback.onCreateResourcesFinished();
     }
 
