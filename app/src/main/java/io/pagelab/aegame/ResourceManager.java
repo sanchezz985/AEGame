@@ -5,6 +5,10 @@
 
 package io.pagelab.aegame;
 
+import org.andengine.audio.music.Music;
+import org.andengine.audio.music.MusicFactory;
+import org.andengine.audio.sound.Sound;
+import org.andengine.audio.sound.SoundFactory;
 import org.andengine.engine.Engine;
 import org.andengine.engine.camera.Camera;
 import org.andengine.opengl.texture.ITexture;
@@ -60,6 +64,13 @@ public class ResourceManager {
     public ITextureRegion platformTextureRegion;
     public ITextureRegion cloud1TextureRegion;
     public ITextureRegion cloud2TextureRegion;
+
+    // sounds
+    public Sound soundFall;
+    public Sound soundJump;
+
+    // music
+    public Music music;
 
     //endregion
 
@@ -121,6 +132,27 @@ public class ResourceManager {
 
         }catch(final ITextureAtlasBuilder.TextureAtlasBuilderException e){
             throw new RuntimeException("Error while loading game textures", e);
+        }
+
+    }
+
+    /**
+     * Try to load the audio resources
+     */
+    public void loadGameAudio(){
+
+        try{
+
+            SoundFactory.setAssetBasePath("sfx/");
+            soundJump = SoundFactory.createSoundFromAsset(activity.getSoundManager(), activity, "jump.wav");
+            soundFall = SoundFactory.createSoundFromAsset(activity.getSoundManager(), activity, "fall.wav");
+
+            MusicFactory.setAssetBasePath("mfx/");
+            music = MusicFactory.createMusicFromAsset(activity.getMusicManager(), activity, "mainMusic.mp3");
+
+        }catch(Exception e){
+
+            throw new RuntimeException("Error while loading audio", e);
         }
 
     }
