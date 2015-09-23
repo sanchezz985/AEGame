@@ -5,12 +5,16 @@
 
 package io.pagelab.aegame;
 
+import android.graphics.Typeface;
+
 import org.andengine.audio.music.Music;
 import org.andengine.audio.music.MusicFactory;
 import org.andengine.audio.sound.Sound;
 import org.andengine.audio.sound.SoundFactory;
 import org.andengine.engine.Engine;
 import org.andengine.engine.camera.Camera;
+import org.andengine.opengl.font.Font;
+import org.andengine.opengl.font.FontFactory;
 import org.andengine.opengl.texture.ITexture;
 import org.andengine.opengl.texture.TextureOptions;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
@@ -23,6 +27,7 @@ import org.andengine.opengl.texture.bitmap.BitmapTextureFormat;
 import org.andengine.opengl.texture.region.ITextureRegion;
 import org.andengine.opengl.texture.region.ITiledTextureRegion;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
+import org.andengine.util.adt.color.Color;
 
 public class ResourceManager {
 
@@ -71,6 +76,9 @@ public class ResourceManager {
 
     // music
     public Music music;
+
+    // font
+    public Font font;
 
     //endregion
 
@@ -154,6 +162,16 @@ public class ResourceManager {
 
             throw new RuntimeException("Error while loading audio", e);
         }
+
+    }
+
+    /**
+     * Load fonts
+     */
+    public void loadFont(){
+
+        font = FontFactory.createStroke(activity.getFontManager(), activity.getTextureManager(), 256, 256, Typeface.create(Typeface.SANS_SERIF, Typeface.BOLD), 50, true, Color.WHITE_ABGR_PACKED_INT, 2, Color.BLACK_ABGR_PACKED_INT);
+        font.load();
 
     }
 
