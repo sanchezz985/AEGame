@@ -19,6 +19,9 @@ import org.andengine.util.debug.Debug;
 
 import java.io.IOException;
 
+import io.pagelab.aegame.scene.AbstractScene;
+import io.pagelab.aegame.scene.GameScene;
+
 
 public class MainGameActivity extends BaseGameActivity {
 
@@ -48,7 +51,9 @@ public class MainGameActivity extends BaseGameActivity {
         EngineOptions engineoptions = new EngineOptions(true, ScreenOrientation.PORTRAIT_FIXED, resolutionPolicy, camera);
         engineoptions.getAudioOptions().setNeedsMusic(true).setNeedsSound(true);
         engineoptions.setWakeLockOptions(WakeLockOptions.SCREEN_ON);
-        Debug.i("Engine configured !");
+
+        // for improve the quality in elements
+        engineoptions.getRenderOptions().setDithering(true);
         return engineoptions;
     }
 
@@ -78,8 +83,7 @@ public class MainGameActivity extends BaseGameActivity {
      * @throws IOException
      */
     public void onCreateScene(OnCreateSceneCallback pOnCreateSceneCallback) throws IOException {
-        Scene scene = new Scene();
-        scene.getBackground().setColor(Color.CYAN);
+        Scene scene = new GameScene();
         pOnCreateSceneCallback.onCreateSceneFinished(scene);
     }
 
@@ -92,6 +96,10 @@ public class MainGameActivity extends BaseGameActivity {
      * @throws IOException
      */
     public void onPopulateScene(Scene pScene, OnPopulateSceneCallback pOnPopulateSceneCallback) throws IOException {
+
+        AbstractScene scene = (AbstractScene)pScene;
+        scene.populate();
+
         pOnPopulateSceneCallback.onPopulateSceneFinished();
     }
     //endregion
