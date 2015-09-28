@@ -6,6 +6,7 @@
 package io.pagelab.aegame.entity;
 
 import org.andengine.entity.sprite.TiledSprite;
+import org.andengine.input.touch.TouchEvent;
 import org.andengine.opengl.texture.region.ITiledTextureRegion;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
 
@@ -19,6 +20,11 @@ public class Player extends TiledSprite{
     private boolean dead = false;
 
     //endregion
+
+    //region Private Methods
+    //endregion
+
+    //region Methods
 
     /**
      * Constructor
@@ -41,7 +47,7 @@ public class Player extends TiledSprite{
     }
 
     public void turnRigth(){
-        setFlippedVertical(true);
+        setFlippedHorizontal(false);
     }
 
     public void fly(){
@@ -57,10 +63,19 @@ public class Player extends TiledSprite{
         setCurrentTileIndex(0);
     }
 
-    //region Private Methods
-    //endregion
+    @Override
+    public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY){
 
-    //region Methods
+        if(pSceneTouchEvent.isActionDown()){
+            clearEntityModifiers();
+            return true;
+        }else if(pSceneTouchEvent.isActionMove()){
+            setPosition(pSceneTouchEvent.getX(), pSceneTouchEvent.getY());
+            return true;
+        }
+        return false;
+    }
+
     //endregion
 
 }
